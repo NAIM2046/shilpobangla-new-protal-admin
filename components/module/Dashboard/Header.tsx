@@ -12,13 +12,14 @@ export default function Header({ name, email, role, avatar }: HeaderProps) {
   return (
     <header className="flex h-16 shrink-0 items-center gap-2 border-b px-4 bg-white">
       <SidebarTrigger className="-ml-1" />
-      
+
       <div className="flex flex-1 items-center justify-between">
-        <h1 className="text-lg font-semibold text-slate-800">শিল্পবাংলা</h1>
-        
+        <h1 className="text-lg font-semibold text-slate-800">
+          দৈনিক শিল্পবাংলা
+        </h1>
+
         {/* 🌟 ইউজারের প্রোফাইল ইনফরমেশন */}
         <div className="flex items-center gap-3">
-          
           {/* নাম এবং রোল (মোবাইলে হাইড থাকবে, বড় স্ক্রিনে দেখাবে) */}
           <div className="hidden md:block text-right">
             <p className="text-sm font-semibold text-slate-900">{name}</p>
@@ -27,9 +28,9 @@ export default function Header({ name, email, role, avatar }: HeaderProps) {
 
           {/* অ্যাভাটার (ছবি) */}
           {avatar ? (
-            <img 
-              src={avatar} 
-              alt={name || "User Avatar"} 
+            <img
+              src={avatar}
+              alt={name || "User Avatar"}
               className="w-10 h-10 rounded-full object-cover border-2 border-slate-100"
             />
           ) : (
@@ -38,7 +39,6 @@ export default function Header({ name, email, role, avatar }: HeaderProps) {
               {name?.charAt(0)?.toUpperCase() || "U"}
             </div>
           )}
-          
         </div>
       </div>
     </header>

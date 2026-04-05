@@ -24,16 +24,11 @@ import { toast } from "sonner";
 export function AppSidebar({ role }: { role: UserRole }) {
   const pathname = usePathname();
   const router = useRouter();
-  
+
   const navItems = dashboardNav[role];
 
- 
   const handleLogout = async () => {
-   
-      
-       await logoutUser(); 
-
-     
+    await logoutUser();
   };
 
   return (
@@ -42,7 +37,7 @@ export function AppSidebar({ role }: { role: UserRole }) {
       <SidebarContent className="flex-1">
         <SidebarGroup>
           <SidebarGroupLabel className="text-lg font-bold text-slate-900 mb-4 mt-2 px-4">
-            Shilpobangla
+            Daily Shilpobangla
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
@@ -50,8 +45,15 @@ export function AppSidebar({ role }: { role: UserRole }) {
                 const isActive = pathname === item.href;
                 return (
                   <SidebarMenuItem key={item.title}>
-                    <SidebarMenuButton asChild isActive={isActive} tooltip={item.title}>
-                      <Link href={item.href} className="flex items-center gap-3">
+                    <SidebarMenuButton
+                      asChild
+                      isActive={isActive}
+                      tooltip={item.title}
+                    >
+                      <Link
+                        href={item.href}
+                        className="flex items-center gap-3"
+                      >
                         {/* আইকন রেন্ডার করা */}
                         <item.icon className="w-5 h-5" />
                         <span>{item.title}</span>
@@ -69,8 +71,8 @@ export function AppSidebar({ role }: { role: UserRole }) {
       <SidebarFooter className="p-4 border-t border-slate-100">
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton 
-              onClick={handleLogout} 
+            <SidebarMenuButton
+              onClick={handleLogout}
               className="text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors w-full flex items-center gap-3"
             >
               <LogOut className="w-5 h-5" />

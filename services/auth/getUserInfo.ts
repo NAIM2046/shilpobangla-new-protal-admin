@@ -51,7 +51,7 @@ export const getUserInfo = async (): Promise<AuthUser> => {
         name: result.data.name || "Unknown User",
         role: verifiedToken.role as UserRole,
         isLoggedIn: true,
-        avatar: result.data.avatar,
+        avatar: result.data.avatar_url,
         needPasswordChange: result.data.needPasswordChange || false,
       };
     }

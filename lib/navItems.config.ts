@@ -7,7 +7,7 @@ import {
   Radio,
   Video,
   Users,
-  Settings,
+ 
   Lock,
   Newspaper,
   CheckCircle,
@@ -28,6 +28,7 @@ export const dashboardNav: Record<UserRole, NavItem[]> = {
     { title: "Add News", href: "/reporter/dashboard/add-news", icon: PenSquare },
     { title: "My News", href: "/reporter/dashboard/my-news", icon: FileText },
     { title: "Change Password", href: "/change-password", icon: Lock },
+    {title: "Profile", href: "/profile", icon: Users},
   ],
 
   /* ================= EDITOR ================= */
@@ -39,6 +40,7 @@ export const dashboardNav: Record<UserRole, NavItem[]> = {
     { title: "Live Updates", href: "/editor/dashboard/live-updates", icon: Radio },
     { title: "Video Gallery", href: "/editor/dashboard/videos", icon: Video },
     { title: "Change Password", href: "/change-password", icon: Lock },
+     {title: "Profile", href: "/profile", icon: Users},
   ],
 
   /* ================= ADMIN ================= */
@@ -49,8 +51,9 @@ export const dashboardNav: Record<UserRole, NavItem[]> = {
     { title: "Categories", href: "/admin/dashboard/categories", icon: Layers },
     { title: "Live Updates", href: "/admin/dashboard/live-updates", icon: Radio },
     { title: "Video Gallery", href: "/admin/dashboard/videos", icon: Video },
-    { title: "System Settings", href: "/admin/dashboard/settings", icon: Settings },
+    
     { title: "Change Password", href: "/change-password", icon: Lock },
+    {title: "Profile", href: "/profile", icon: Users},
   ],
   USER:[],
 };

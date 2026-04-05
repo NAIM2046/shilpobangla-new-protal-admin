@@ -47,7 +47,10 @@ export const getAllVideo = async ({
 };
 
 export const AddVideo = async (payload: {
-    url : string
+  title: string , 
+  url: string,
+  description: string
+  
 }) => {
   try {
     const res = await serverFetch.post("/videos", {

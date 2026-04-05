@@ -103,7 +103,9 @@ export const updateUser = async (
   payload: {
     name?: string;
     email?: string;
-    role?: UserRole
+    role?: UserRole;
+    avatar_url?: string;
+    bio?: string;
   }
 ) => {
   try {
@@ -153,4 +155,27 @@ export const deleteUser = async (id: string) => {
       data: null,
     };
   }
+};
+
+export const getUserProfile = async () => {
+  try {
+    const res = await serverFetch.get("/user/profile", {
+      cache: "no-store",
+    });
+    const data = await res.json();
+    if (!res.ok) {
+      return {
+        success: false,
+        message: data?.message || "Failed to fetch user profile.",
+        data: null,
+      };
+    }
+    return data;
+  } catch (error: any) {
+    return {
+      success: false,
+      message: error?.message || "Something went wrong while fetching user profile.",
+      data: null,
+    };
+  } 
 };

@@ -80,30 +80,32 @@ export async function proxy(request: NextRequest) {
 
   // 4️⃣ Redirect logged-in users away from auth routes (like /login, /register)
   // 🚀 নতুন লজিক: pathname যদি /reset-password না হয়, তবেই ড্যাশবোর্ডে পাঠাও
-  if (accessToken && isAuth && pathname !== "/reset-password") {
+  if (
+    accessToken && 
+    isAuth && 
+    pathname !== "/reset-password" && 
+    pathname !== "/forgot-password" // 🌟 এই শর্তটি যোগ করা হয়েছে
+  ) {
     return NextResponse.redirect(
       new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
     );
   }
-
-  // 4️⃣ Redirect logged-in users away from auth routes (like /login, /register)
-  if (accessToken && isAuth) {
-    return NextResponse.redirect(
-      new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
-    );
-  }
+  
 
   // 5️⃣ Redirect guest users to login if route is protected
   if (!accessToken && !isAuth) {
     const loginUrl = new URL("/login", request.url);
     loginUrl.searchParams.set("redirect", pathname);
+     
     return NextResponse.redirect(loginUrl);
   }
+ 
 
   // 6️⃣ Protected common routes
   if (routerOwner === "COMMON") {
     return NextResponse.next();
   }
+  
 
   // 7️⃣ Role-based protected routes
   const protectedRoles = ["ADMIN", "EDITOR", "REPORTER"];
@@ -114,7 +116,7 @@ export async function proxy(request: NextRequest) {
       );
     }
   }
-
+console.log(routerOwner ,".....................")
   return NextResponse.next();
 }
 
