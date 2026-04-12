@@ -10,7 +10,7 @@ export default async function CategoriesPage() {
   let categories = [];
   const result = await getAllCategory();
   categories = result?.data;
-  console.log("Fetched Categories:", categories); // ডিবাগিং এর জন্য কনসোল লগ
+  // console.log("Fetched Categories:", categories);
 
   // ২. ডাটাগুলো CategoryList কম্পোনেন্টে পাঠিয়ে দিচ্ছি
   return <CategoryList initialCategories={categories} />;

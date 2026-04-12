@@ -10,7 +10,7 @@ export default async function Home() {
     redirect("/login");
   }
 
-  console.log("login user", user);
+  //console.log("login user", user);
   // 2. Assert the type here so TypeScript is happy
   const userRole = user.role as UserRole;
 

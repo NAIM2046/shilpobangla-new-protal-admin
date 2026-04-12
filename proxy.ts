@@ -15,7 +15,7 @@ import { getNewAccessToken } from "./services/auth/auth.services";
 
 export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  console.log("Incoming request for:", pathname);
+  //console.log("Incoming request for:", pathname);
 
   // 1️⃣ Token refresh logic
   const tokenRefreshResult = await getNewAccessToken();
@@ -37,7 +37,7 @@ export async function proxy(request: NextRequest) {
       );
       if (typeof verifiedToken === "string") throw new Error("Invalid token");
       userRole = verifiedToken.role;
-      console.log("Verified token role:", userRole);
+      //console.log("Verified token role:", userRole);
     } catch (err) {
       await deleteCookie("accessToken");
       await deleteCookie("refreshToken");
@@ -49,8 +49,8 @@ export async function proxy(request: NextRequest) {
   const routerOwner = getRouteOwner(pathname);
   const isAuth = isAuthRoute(pathname);
 
-  console.log("access token", accessToken ? "Exists" : "Null");
-  console.log("is auth route", isAuth);
+  //console.log("access token", accessToken ? "Exists" : "Null");
+  //console.log("is auth route", isAuth);
 
   // 🌟 3️⃣ Check if user needs password change FIRST (৪ নম্বর ধাপের আগে)
  if (accessToken) {
@@ -116,7 +116,7 @@ export async function proxy(request: NextRequest) {
       );
     }
   }
-console.log(routerOwner ,".....................")
+//console.log(routerOwner ,".....................")
   return NextResponse.next();
 }
 

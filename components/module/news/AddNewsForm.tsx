@@ -246,7 +246,7 @@ const AddNewsForm = ({ initialCategories }: AddNewsFormProps) => {
       if (newsResult.success) {
         alert("News published successfully!");
         localStorage.removeItem("news_draft");
-        router.push("/editor/dashboard/news");
+        // router.push("/editor/dashboard/news");
       } else {
         alert(newsResult.message || "Failed to create news");
       }

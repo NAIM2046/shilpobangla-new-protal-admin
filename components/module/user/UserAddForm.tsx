@@ -5,12 +5,12 @@ import { useRouter } from "next/navigation"; // 👈 রাউটার ইম�
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { 
-  Card, 
-  CardContent, 
-  CardDescription, 
-  CardHeader, 
-  CardTitle 
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@/components/ui/card";
 import {
   Select,
@@ -20,7 +20,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { createUser } from "@/services/users/users.services";
-import { UserRole } from '../../../lib/auth-utils';
+import { UserRole } from "../../../lib/auth-utils";
 import { toast } from "sonner";
 
 export default function UserAddForm() {
@@ -36,19 +36,19 @@ export default function UserAddForm() {
 
     try {
       const newUserData = { name, email, role };
-      console.log("Creating new user...", newUserData);
+      //console.log("Creating new user...", newUserData);
 
       const result = await createUser(newUserData);
-      
+
       if (result.success) {
         toast.success(`${result.message}`);
-        
+
         // সফল হলে ফর্মের ডেটা মুছে ফেলার জন্য (অপশনাল)
         setName("");
         setEmail("");
-        
+
         // 💥 ম্যাজিক: প্যারেন্ট পেজকে রিফ্রেশ করে নতুন ডেটা আনা হবে
-        router.refresh(); 
+        router.refresh();
       } else {
         toast.error(`${result.message}`);
       }
@@ -63,14 +63,15 @@ export default function UserAddForm() {
     <div className="max-w-2xl mx-auto mt-8">
       <Card className="shadow-sm border border-gray-100">
         <CardHeader>
-          <CardTitle className="text-2xl font-bold text-gray-800">Add New User</CardTitle>
+          <CardTitle className="text-2xl font-bold text-gray-800">
+            Add New User
+          </CardTitle>
           <CardDescription className="text-gray-500">
             Create a new user account and assign them a role.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-6">
-            
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {/* Name Field */}
               <div className="space-y-2">
@@ -105,8 +106,8 @@ export default function UserAddForm() {
               {/* Role Selection (Shadcn Select) */}
               <div className="space-y-2">
                 <Label htmlFor="role">User Role</Label>
-                <Select 
-                  onValueChange={(value: any) => setRole(value)} 
+                <Select
+                  onValueChange={(value: any) => setRole(value)}
                   required
                   disabled={isLoading} // 👈 লোডিং অবস্থায় ড্রপডাউন বন্ধ
                 >
@@ -123,16 +124,16 @@ export default function UserAddForm() {
             </div>
 
             <div className="flex justify-end pt-4">
-              <Button 
-                type="button" 
-                variant="outline" 
+              <Button
+                type="button"
+                variant="outline"
                 className="mr-3"
                 disabled={isLoading}
               >
                 Cancel
               </Button>
-              <Button 
-                type="submit" 
+              <Button
+                type="submit"
                 className="bg-blue-600 hover:bg-blue-700 text-white min-w-[120px]"
                 disabled={isLoading} // 👈 লোডিং অবস্থায় বাটনে ক্লিক করা যাবে না
               >

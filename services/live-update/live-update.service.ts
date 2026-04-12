@@ -8,7 +8,7 @@ export const getAllLiveUpdate = async () => {
     });
 
     const data = await res.json();
-    console.log(data ,  "........")
+    //console.log(data ,  "........")
 
     if (!res.ok) {
       return {
@@ -37,7 +37,7 @@ export const toggleLiveUpdate = async (id: string , is_active : boolean) => {
     });
 
     const data = await res.json();
-    console.log(data ,  "........")
+   // console.log(data ,  "........")
 
     if (!res.ok) {
       return {

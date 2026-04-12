@@ -4,7 +4,7 @@ import { getUserProfile } from "@/services/users/users.services";
 
 export default async function ProfileManagementPage() {
   const response = await getUserProfile();
-  console.log(response, ".............profile response");
+  //console.log(response, ".............profile response");
   const userData = response?.data || null;
 
   if (!userData) {

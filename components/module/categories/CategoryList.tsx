@@ -99,7 +99,7 @@ export default function CategoryList({
       `Are you sure you want to delete "${name}"?`,
     );
     if (isConfirmed) {
-      console.log("Deleting Category ID:", id);
+      //console.log("Deleting Category ID:", id);
       const result = await deleteCategory(id);
 
       if (result.success) {
@@ -125,7 +125,7 @@ export default function CategoryList({
   };
 
   const onEditSubmit = async (data: Category) => {
-    console.log("Updated Data for ID:", selectedCategory?.id, data);
+    //console.log("Updated Data for ID:", selectedCategory?.id, data);
 
     const result = await updateCategory(data, selectedCategory?.id as string);
 

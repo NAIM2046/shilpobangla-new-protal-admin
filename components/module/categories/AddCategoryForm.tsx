@@ -49,7 +49,7 @@ export default function AddCategoryForm({
       is_active: true,
     };
 
-    console.log("Form Data Submitted:", payload);
+    //console.log("Form Data Submitted:", payload);
     const result = await createCategory(payload);
 
     if (result.success) {

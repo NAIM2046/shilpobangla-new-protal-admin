@@ -24,7 +24,7 @@ export const getAllUsers = async ({
     });
 
     const data = await res.json();
-    console.log(data ,  "........")
+    //console.log(data ,  "........")
 
     if (!res.ok) {
       return {

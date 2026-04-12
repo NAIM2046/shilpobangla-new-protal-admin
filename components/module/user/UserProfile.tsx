@@ -87,10 +87,10 @@ export default function UserProfile({ userData }: UserProfileProps) {
         bio: formData.bio,
         avatar_url: finalAvatarUrl,
       };
-      console.log("Final Payload for Profile Update:", finalPayload);
+      //console.log("Final Payload for Profile Update:", finalPayload);
       // প্রোফাইল আপডেট API/Action কল করা
       const profileRes = await updateUser(userData.id, finalPayload);
-      console.log("Profile Update Response:", profileRes);
+      //console.log("Profile Update Response:", profileRes);
 
       if (profileRes.success) {
         setMessage({ type: "success", text: "Profile updated successfully!" });

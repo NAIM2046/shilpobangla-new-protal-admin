@@ -284,7 +284,7 @@ const EditorNewsEditForm = ({
       if (newsResult.success) {
         alert("News updated successfully!");
         localStorage.removeItem(`news_edit_draft_${newsId}`);
-        router.push("/reporter/dashboard/my-news");
+        //router.push("/reporter/dashboard/my-news");
       } else {
         alert(newsResult.message || "Failed to update news");
       }
