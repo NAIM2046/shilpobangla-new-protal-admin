@@ -3,27 +3,30 @@
 import {
   Sidebar,
   SidebarContent,
-  SidebarFooter, // 👈 Footer ইম্পোর্ট করা হলো
+  SidebarFooter,
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar, // 👈 🌟 সাইডবার কন্ট্রোল করার হুক ইম্পোর্ট করা হলো
 } from "@/components/ui/sidebar";
 import { UserRole } from "@/lib/auth-utils";
 import { dashboardNav } from "@/lib/navItems.config";
 import { logoutUser } from "@/services/auth/logoutUser";
-import { LogOut } from "lucide-react"; // 👈 লগআউট আইকনের জন্য
+import { LogOut } from "lucide-react";
 
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { toast } from "sonner";
-// import { logoutUser } from "@/services/auth/auth.services"; // আপনার লগআউট API ফাংশন
 
 export function AppSidebar({ role }: { role: UserRole }) {
   const pathname = usePathname();
   const router = useRouter();
+
+  // 👈 🌟 হুক থেকে সাইডবারের স্টেট এবং ফাংশন নেওয়া হলো
+  const { setOpenMobile, isMobile } = useSidebar();
 
   const navItems = dashboardNav[role];
 
@@ -49,6 +52,12 @@ export function AppSidebar({ role }: { role: UserRole }) {
                       asChild
                       isActive={isActive}
                       tooltip={item.title}
+                      // 👈 🌟 মেনুতে ক্লিক করলে সাইডবার বন্ধ হয়ে যাবে (বিশেষ করে মোবাইলে)
+                      onClick={() => {
+                        if (isMobile) {
+                          setOpenMobile(false);
+                        }
+                      }}
                     >
                       <Link
                         href={item.href}
@@ -67,12 +76,16 @@ export function AppSidebar({ role }: { role: UserRole }) {
         </SidebarGroup>
       </SidebarContent>
 
-      {/* 🌟 লগআউট বাটন (Footer - একেবারে নিচে থাকবে) */}
+      {/* 🌟 লগআউট বাটন (Footer) */}
       <SidebarFooter className="p-4 border-t border-slate-100">
         <SidebarMenu>
           <SidebarMenuItem>
             <SidebarMenuButton
-              onClick={handleLogout}
+              onClick={() => {
+                handleLogout();
+                // 👈 লগআউট ক্লিক করলেও যেন সাইডবার বন্ধ হয়
+                if (isMobile) setOpenMobile(false);
+              }}
               className="text-red-600 hover:bg-red-50 hover:text-red-700 transition-colors w-full flex items-center gap-3"
             >
               <LogOut className="w-5 h-5" />
