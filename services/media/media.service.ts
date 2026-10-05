@@ -25,7 +25,18 @@ export const uploadMediaAction = async (formData: FormData) => {
     
     revalidatePath("/editor/dashboard/media"); 
 
-   return data 
+    const mediaObj = data.data || data.media || data;
+    return {
+      success: true,
+      message: data.message || "Media uploaded successfully",
+      data: {
+        id: mediaObj.id,
+        file_url: mediaObj.file_url || mediaObj.url,
+        file_name: mediaObj.file_name || mediaObj.fileName || "",
+        alt_text: mediaObj.alt_text || "",
+      },
+      media: data.media || mediaObj,
+    }; 
   } catch (error: any) {
     console.error("Upload Action Error:", error);
     return {

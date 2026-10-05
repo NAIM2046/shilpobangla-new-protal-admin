@@ -1,6 +1,6 @@
 // src/lib/auth-utils.ts
 
-export type UserRole = "ADMIN" | "EDITOR" | "REPORTER" | "USER";
+export type UserRole = "SUPER_ADMIN" | "ADMIN" | "EDITOR" | "REPORTER" | "USER";
 
 export type RouteConfig = {
   exact: string[];
@@ -61,8 +61,8 @@ export const getRouteOwner = (pathname: string): RouteOwner => {
   return null;
 };
 
-export const getDefaultDashboardRoute = (role: UserRole): string => {
-  if (role === "ADMIN") {
+export const getDefaultDashboardRoute = (role: UserRole | string): string => {
+  if (role === "ADMIN" || role === "SUPER_ADMIN") {
     return "/admin/dashboard";
   }
   if (role === "EDITOR") {

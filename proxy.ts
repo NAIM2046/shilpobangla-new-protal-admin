@@ -110,18 +110,19 @@ export async function proxy(request: NextRequest) {
   // 7️⃣ Role-based protected routes
   const protectedRoles = ["ADMIN", "EDITOR", "REPORTER"];
   if (protectedRoles.includes(routerOwner || "")) {
-    if (userRole !== routerOwner) {
+    const isSuperAdminAccess =
+      (userRole as string) === "SUPER_ADMIN" && routerOwner === "ADMIN";
+    if (userRole !== routerOwner && !isSuperAdminAccess) {
       return NextResponse.redirect(
         new URL(getDefaultDashboardRoute(userRole as UserRole), request.url),
       );
     }
   }
-//console.log(routerOwner ,".....................")
   return NextResponse.next();
 }
 
 export const config = {
   matcher: [
-    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.well-known).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico|css|js)$).*)",
   ],
 };
