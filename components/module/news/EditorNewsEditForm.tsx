@@ -237,7 +237,7 @@ const EditorNewsEditForm = ({
 
         const uploadResult = await uploadMediaAction(mediaFormData);
 
-        if (!uploadResult.success) {
+        if (!uploadResult.success || !uploadResult.data) {
           alert("Failed to upload new thumbnail: " + uploadResult.message);
           setIsLoading(false);
           return;
