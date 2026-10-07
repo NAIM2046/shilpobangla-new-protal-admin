@@ -3,7 +3,28 @@
 import { revalidatePath } from "next/cache";
 import { serverFetch } from "@/lib/server-fetch"; // 
 
-export const uploadMediaAction = async (formData: FormData) => {
+export type UploadMediaResponse =
+  | {
+      success: true;
+      message: string;
+      data: {
+        id: string;
+        file_url: string;
+        url?: string;
+        file_name?: string;
+        alt_text?: string;
+      };
+      media?: any;
+    }
+  | {
+      success: false;
+      message: string;
+      data: null;
+    };
+
+export const uploadMediaAction = async (
+  formData: FormData
+): Promise<UploadMediaResponse> => {
   try {
   
     const res = await serverFetch.post("/media/upload", {
@@ -32,6 +53,7 @@ export const uploadMediaAction = async (formData: FormData) => {
       data: {
         id: mediaObj.id,
         file_url: mediaObj.file_url || mediaObj.url,
+        url: mediaObj.url || mediaObj.file_url,
         file_name: mediaObj.file_name || mediaObj.fileName || "",
         alt_text: mediaObj.alt_text || "",
       },

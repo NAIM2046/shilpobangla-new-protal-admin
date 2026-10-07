@@ -55,5 +55,18 @@ export const dashboardNav: Record<UserRole, NavItem[]> = {
     { title: "Change Password", href: "/change-password", icon: Lock },
     {title: "Profile", href: "/profile", icon: Users},
   ],
+
+  /* ================= SUPER_ADMIN ================= */
+  SUPER_ADMIN: [
+    { title: "Dashboard", href: "/admin/dashboard", icon: LayoutDashboard },
+    { title: "User Management", href: "/admin/dashboard/users", icon: Users },
+    { title: "All News", href: "/admin/dashboard/all-news", icon: Newspaper },
+    { title: "Categories", href: "/admin/dashboard/categories", icon: Layers },
+    { title: "Live Updates", href: "/admin/dashboard/live-updates", icon: Radio },
+    { title: "Video Gallery", href: "/admin/dashboard/videos", icon: Video },
+    
+    { title: "Change Password", href: "/change-password", icon: Lock },
+    {title: "Profile", href: "/profile", icon: Users},
+  ],
   USER:[],
 };
